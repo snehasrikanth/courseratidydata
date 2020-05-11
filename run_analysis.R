@@ -79,7 +79,7 @@ Train_set <- cbind(Train_set,trsfn)
 #2       1        5         0.2784188       -0.01641057        -0.1235202
 
 
-# Q1) Merging the two`s data sets, training 70% and test 30%.
+# step 1) Merging the two`s data sets, training 70% and test 30%.
 
 #dim (Test_set)		dim (Train_set)		total number of rows
 # 2947  563		    	7352  563			   10299
@@ -92,7 +92,7 @@ DS <- rbind(Test_set,Train_set)
 #10299   563
 
 
-# Q2) Extracting only the measurements on the mean and Std for each measurements.
+# step 2) Extracting only the measurements on the mean and Std for each measurements.
 
 # Since the "features" are already organice as character vectors, we just need to subset the desired data.
 
@@ -102,7 +102,7 @@ Mean_Std_data<- DS[, grep("-([Mm]ean|[Ss]td)\\(\\)", Features)]
 #10299    66
 
 
-# Q3)Implementing descriptive activity Labels in the data set.
+# step 3)Implementing descriptive activity Labels in the data set.
 
 Activity_labels <- read.table(unz(temp,"UCI HAR Dataset/activity_labels.txt"))
 
@@ -111,7 +111,7 @@ unlink(temp)
 
 
 
-# Q4)Labeling the Data with descriptive variable names.
+# step 4)Labeling the Data with descriptive variable names.
 
 names(Mean_Std_data) <- gsub("Acc","Accelerometer",names(Mean_Std_data))
 names(Mean_Std_data) <- gsub("Gyro","Gyroscope",names(Mean_Std_data))
@@ -126,7 +126,7 @@ names(Mean_Std_data) <- gsub("-std()","Std", ignore.case=T,names(Mean_Std_data))
 names(Mean_Std_data) <- gsub("^f|-freq()","Frequency",ignore.case=T,names(Mean_Std_data))
 
 
-# Q5) Independent Data Set with avg. for each variable, each activity and each subject.
+# step 5) Independent Data Set with avg. for each variable, each activity and each subject.
 
 Independent_DS <- Mean_Std_data %>% group_by(Subject, Activity) %>% summarise_all(funs(mean)) %>% arrange(Subject)
 
@@ -135,7 +135,7 @@ Independent_DS <- Mean_Std_data %>% group_by(Subject, Activity) %>% summarise_al
 # 180  66
 
 #str(Independent_DS)
-#tibble [180 × 66] (S3: grouped_df/tbl_df/tbl/data.frame)
+#tibble [180 Ã— 66] (S3: grouped_df/tbl_df/tbl/data.frame)
 #$ Subject                                           : int [1:180] 1 1 1 1 1 1 2 2 2 2 ...
 #$ Activity                                          : Factor w/ 6 levels "LAYING","SITTING",..: 1 2 3 4 5 6 1 2 3 4 ...
 #$ TimeBodyAccelerometerMean()-X                     : num [1:180] 0.222 0.261 0.279 0.277 0.289 ...
