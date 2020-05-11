@@ -1,0 +1,111 @@
+# CodeBook
+
+This codebook is base on the Run_analysis.R script for the Getting and Cleaning Data - Course Project.
+Its main objective is to describe the steps performed and modifications made to the raw data until obtaining the final Data.
+
+# Indentifiers
+After cheking the Data two main identifiers where located for botth data sets.
+ - Subjets.
+ - Ativity.
+ 
+# Modifications
+1) Downloading the raw data.
+  - The data was extracted from a folder called UCI HAR Dataset, to then be stored in a temporary file (temp), as it was a zip file.
+  - The packages "data.table" and "dplyr" where downloaded from the library.
+
+2) Geting and CLeannig Test & Training Sets. 
+  - First each data has to be assigned to a variable accordinly  to the set.
+  - After the Data was assigned the main identifiers  were named ( Subjets & Acvtivities)
+  - Follow by assigng the features as column names for each set.
+  - Since all 3 variables had the same number of rows and columns, respectibly for both data sets, were bind into separete sets.
+  
+3) Merging the Test & Training Sets. 
+  - Both sets had the same column names and number of Features. Therefore could be bind by merging the rows.
+
+4) Extracting only the measurements on the mean and Std for each measurements.
+  -Since the "features" are already organice as character vectors, we just need to subset the desired data.
+
+5) Implementing descriptive activity Labels in the data set.
+  - The Activity labels variable was subtacted from the file and named.
+  - Base on the previous Data set (Mean_Std_data), the desriptive labels replace the activity ones.
+
+6) Appropriately labels the data set with descriptive variable names.
+  - The feature names, colnames, were rename with specific alterations like following:
+      .Acc = Accelerometer
+      .Gyro = Gyroscope
+      .BodyBody = Body
+      .Mag = Magnitude
+      .starting  with f  = Frequency
+      .start with  t =  Time
+      
+7) Independent Data Set with avg. for each variable, each activity and each subject.
+ - Base on the changes made in the previous step, the independet data set ( FinalData ), was created by summarizing the mean of each group.
+
+
+# Features 
+This are the features of the Final Data after all modifications.
+
+[3] "TimeBodyAccelerometerMean()-X"                     
+[4] "TimeBodyAccelerometerMean()-Y"                     
+[5] "TimeBodyAccelerometerMean()-Z"                     
+[6] "TimeBodyAccelerometerStd()-X"                      
+[7] "TimeBodyAccelerometer-correlation()-X,Z"           
+[8] "TimeBodyAccelerometer-correlation()-Y,Z"           
+[9] "TimeGravityAccelerometerMean()-X"                  
+[10] "TimeGravityAccelerometerMean()-Y"                  
+[11] "TimeGravityAccelerometerMean()-Z"                  
+[12] "TimeGravityAccelerometerStd()-X"                   
+[13] "TimeGravityAccelerometer-correlation()-X,Z"        
+[14] "TimeGravityAccelerometer-correlation()-Y,Z"        
+[15] "TimeBodyAccelerometerJerkMean()-X"                 
+[16] "TimeBodyAccelerometerJerkMean()-Y"                 
+[17] "TimeBodyAccelerometerJerkMean()-Z"                 
+[18] "TimeBodyAccelerometerJerkStd()-X"                  
+[19] "TimeBodyAccelerometerJerk-correlation()-X,Z"       
+[20] "TimeBodyAccelerometerJerk-correlation()-Y,Z"       
+[21] "TimeBodyGyroscopeMean()-X"                         
+[22] "TimeBodyGyroscopeMean()-Y"                         
+[23] "TimeBodyGyroscopeMean()-Z"                         
+[24] "TimeBodyGyroscopeStd()-X"                          
+[25] "TimeBodyGyroscope-correlation()-X,Z"               
+[26] "TimeBodyGyroscope-correlation()-Y,Z"               
+[27] "TimeBodyGyroscopeJerkMean()-X"                     
+[28] "TimeBodyGyroscopeJerkMean()-Y"                     
+[29] "TimeBodyGyroscopeJerkMean()-Z"                     
+[30] "TimeBodyGyroscopeJerkStd()-X"                      
+[31] "TimeBodyGyroscopeJerk-correlation()-X,Z"           
+[32] "TimeBodyGyroscopeJerk-correlation()-Y,Z"           
+[33] "TimeBodyAccelerometerMagnitude-arCoeff()3"         
+[34] "TimeBodyAccelerometerMagnitude-arCoeff()4"         
+[35] "TimeGravityAccelerometerMagnitude-arCoeff()3"      
+[36] "TimeGravityAccelerometerMagnitude-arCoeff()4"      
+[37] "TimeBodyAccelerometerJerkMagnitude-arCoeff()3"     
+[38] "TimeBodyAccelerometerJerkMagnitude-arCoeff()4"     
+[39] "TimeBodyGyroscopeMagnitude-arCoeff()3"             
+[40] "TimeBodyGyroscopeMagnitude-arCoeff()4"             
+[41] "TimeBodyGyroscopeJerkMagnitude-arCoeff()3"         
+[42] "TimeBodyGyroscopeJerkMagnitude-arCoeff()4"         
+[43] "FrequencyBodyAccelerometerMean()-X"                
+[44] "FrequencyBodyAccelerometerMean()-Y"                
+[45] "FrequencyBodyAccelerometerMean()-Z"                
+[46] "FrequencyBodyAccelerometerStd()-X"                 
+[47] "FrequencyBodyAccelerometer-bandsEnergy()-1,24"     
+[48] "FrequencyBodyAccelerometer-bandsEnergy()-25,48"    
+[49] "FrequencyBodyAccelerometerJerkMean()-X"            
+[50] "FrequencyBodyAccelerometerJerkMean()-Y"            
+[51] "FrequencyBodyAccelerometerJerkMean()-Z"            
+[52] "FrequencyBodyAccelerometerJerkStd()-X"             
+[53] "FrequencyBodyAccelerometerJerk-bandsEnergy()-1,24" 
+[54] "FrequencyBodyAccelerometerJerk-bandsEnergy()-25,48"
+[55] "FrequencyBodyGyroscopeMean()-X"                    
+[56] "FrequencyBodyGyroscopeMean()-Y"                    
+[57] "FrequencyBodyGyroscopeMean()-Z"                    
+[58] "FrequencyBodyGyroscopeStd()-X"                     
+[59] "FrequencyBodyGyroscope-bandsEnergy()-1,24"         
+[60] "FrequencyBodyGyroscope-bandsEnergy()-25,48"        
+[61] "FrequencyBodyAccelerometerMagnitude-skewness()"    
+[62] "FrequencyBodyAccelerometerMagnitude-kurtosis()"    
+[63] "FrequencyBodyAccelerometerJerkMagnitude-skewness()"
+[64] "FrequencyBodyAccelerometerJerkMagnitude-kurtosis()"
+[65] "FrequencyBodyGyroscopeMagnitude-skewness()"        
+[66] "FrequencyBodyGyroscopeMagnitude-kurtosis()"        
